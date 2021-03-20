@@ -1,0 +1,173 @@
+def MatrixChallenge(strArr):
+
+  arr = [False]*10 
+
+  for i,x in enumerate(strArr):
+    for j,y in enumerate(x):
+      if y == 'x'or y == ',' or y == '(' or y == ')':
+        continue 
+      if j == 8:
+        continue 
+      for z in range(j+1,18):
+        if y == strArr[i][z]:
+          if i<3:
+            if z<6:
+              arr[1] = True
+            elif z<12:
+              arr[2] = True
+            else:
+              arr[3] = True 
+            if j<6:
+              arr[1] = True
+            elif j<12:
+              arr[2] = True
+            else:
+              arr[3] = True 
+          elif i<6:
+            if z<6:
+              arr[4] = True
+            elif z<12:
+              arr[5] = True
+            else:
+              arr[6] = True 
+            if j<6:
+              arr[4] = True
+            elif j<12:
+              arr[5] = True
+            else:
+              arr[6] = True 
+          else:
+            if z<6:
+              arr[7] = True
+            elif z<12:
+              arr[8] = True
+            else:
+              arr[9] = True 
+            if j<6:
+              arr[7] = True
+            elif j<12:
+              arr[8] = True
+            else:
+              arr[9] = True 
+
+  for l,x in enumerate(strArr):
+    if l == 8:
+      break
+    for j,y in enumerate(x):
+      if y == 'x'or y == ',' or y == '(' or y == ')':
+        continue 
+      for z in range(l+1,9):
+        #print(y+' == '+strArr[z][j]+'     l  =  '+str(i)+'     j  =  '+str(j))
+        if y == strArr[z][j]:
+          if l<3: 
+            if j<6:
+              arr[1] = True
+              if z<3:
+                arr[1] = True
+              elif z<6:
+                arr[4] = True
+              else:
+                arr[7] = True
+            elif j<12:
+              arr[2] = True
+            else:
+              arr[3] = True
+              if z<3:
+                arr[3] = True
+              elif z<6:
+                arr[6] = True
+              else:
+                arr[9] = True  
+          elif l<6:
+            if j<6:
+              arr[4] = True
+              if z<3:
+                arr[1] = True
+              elif z<6:
+                arr[4] = True
+              else:
+                arr[7] = True  
+            elif j<12:
+              arr[5] = True
+              if z<3:
+                arr[2] = True
+              elif z<6:
+                arr[5] = True
+              else:
+                arr[8] = True 
+            else:
+              arr[6] = True 
+              if z<3:
+                arr[3] = True
+              elif z<6:
+                arr[6] = True
+              else:
+                arr[9] = True 
+          else:
+            if j<6:
+              arr[7] = True
+              if z<3:
+                arr[1] = True
+              elif z<6:
+                arr[4] = True
+              else:
+                arr[7] = True
+            elif j<12:
+              arr[8] = True
+              if z<3:
+                arr[2] = True
+              elif z<6:
+                arr[5] = True
+              else:
+                arr[8] = True 
+            else:
+              arr[9] = True 
+              if z<3:
+                arr[3] = True
+              elif z<6:
+                arr[6] = True
+              else:
+                arr[9] = True 
+  
+  arr2 = [['1']*9]*9                      
+  
+  arr2[0] = strArr[0][1]+strArr[0][3]+strArr[0][5]+strArr[1][1]+strArr[1][3]+strArr[1][5]+strArr[2][1]+strArr[2][3]+strArr[2][5]
+  arr2[1] = strArr[0][7]+strArr[0][9]+strArr[0][11]+strArr[1][7]+strArr[1][9]+strArr[1][11]+strArr[2][7]+strArr[2][9]+strArr[2][11]
+  arr2[2] = strArr[0][13]+strArr[0][15]+strArr[0][17]+strArr[1][13]+strArr[1][15]+strArr[1][17]+strArr[2][13]+strArr[2][15]+strArr[2][17]
+
+  arr2[3] = strArr[3][1]+strArr[3][3]+strArr[3][5]+strArr[4][1]+strArr[4][3]+strArr[4][5]+strArr[5][1]+strArr[5][3]+strArr[5][5]
+
+  arr2[4] = strArr[3][7]+strArr[3][9]+strArr[3][11]+strArr[4][7]+strArr[4][9]+strArr[4][11]+strArr[5][7]+strArr[5][9]+strArr[5][11]
+
+  arr2[5] = strArr[3][13]+strArr[3][15]+strArr[3][17]+strArr[4][13]+strArr[4][15]+strArr[4][17]+strArr[5][13]+strArr[5][15]+strArr[5][17]
+
+  arr2[6] = strArr[6][1]+strArr[6][3]+strArr[6][5]+strArr[7][1]+strArr[7][3]+strArr[7][5]+strArr[8][1]+strArr[8][3]+strArr[8][5]
+
+  arr2[7] = strArr[6][7]+strArr[6][9]+strArr[6][11]+strArr[7][7]+strArr[7][9]+strArr[7][11]+strArr[8][7]+strArr[8][9]+strArr[8][11]
+
+  arr2[8] = strArr[6][13]+strArr[6][15]+strArr[6][17]+strArr[7][13]+strArr[7][15]+strArr[7][17]+strArr[8][13]+strArr[8][15]+strArr[8][17]
+  
+  
+  for i,x in enumerate(arr2):
+    for j,y in enumerate(x):
+      if y == 'x'or y == ',' or y == '(' or y == ')':
+        continue 
+      if j == 8:
+        continue
+      for z in range(j+1,9):
+        if y == arr2[i][z]:
+          arr[i+1] = True
+  
+
+  strArr2 = ''
+  m=0
+  for i,x in enumerate(arr):
+    if x == True:
+      strArr2 = strArr2+str(i)+','
+  strArr2 = strArr2[0:len(strArr2)-1]   
+  return strArr2
+  
+
+
+# keep this function call here 
+print(MatrixChallenge(input()))
